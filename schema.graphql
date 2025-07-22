@@ -1,0 +1,35 @@
+"""
+Subscriber log entry
+Stores information about subscriber events for rate limiting system (VOD segment access control)
+"""
+type subscriber_log @table(database: "ratelimit") @export {
+    "Primary key: Array of [subscriberId, time] for efficient time-based searches"
+    subscriberId: Any @primaryKey
+
+    "Session ID associated with the event"
+    clientsessionId: String @indexed
+
+    "Content name"
+    contentname: String
+
+    "Edge IP address"
+    edgeIP: String @indexed
+
+    "IP address of the client"
+    clientIP: String @indexed
+
+    "Timestamp of the event in epoch milliseconds"
+    time: Float! @indexed
+
+    "User Agent of the request"
+    useragent: String
+
+    "Host component of the URL"
+    host: String
+
+    "Request Path component of URL"
+    path: String
+
+    "Location of client playing the content"
+    clientlocation: String
+}

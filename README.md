@@ -5,7 +5,7 @@
 ## Overview
 
 This project implements a system to prevent bot users and potential pirates from accessing resources like VOD segments from a service.
-It utilizes HarperDB as a database solution in conjunction with Edge workers to store data and logic for quickly retrieving records,
+It utilizes Harper as a database solution in conjunction with Edge workers to store data and logic for quickly retrieving records,
 accepting or denying VOD segment requests, and detecting potential piracy activities.
 
 ## Functional Requirements
@@ -39,7 +39,7 @@ The `subscriber_log` table schema includes:
 
 ## Technical Implementation
 
-- The system uses HarperDB's Resource API to implement the required logic.
+- The system uses Harper's Resource API to implement the required logic.
 - The `subscriberlog` class manages the insertion of new log entries and performs real-time piracy detection.
 - Piracy detection is performed using an optimized method that checks multiple conditions within a 10-second window.
 - The primary key for log entries is a compound key of [subscriberId, time] for efficient time-based searches.
@@ -58,7 +58,7 @@ The system checks for the following conditions within a 10-second window:
 
 ### PoC Environment Example
 - 2 GEO: London, Paris
-- 2 x 32GB HarperDB Nodes
+- 2 x 32GB Harper Nodes
 - Akamai: Ion Cache, EdgeWorkers, Global Traffic Manager
 
 ### Production Environment
